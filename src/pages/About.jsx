@@ -21,8 +21,11 @@ const About = () => {
 
       <div className="mt-5 flex flex-col gap-3 text-slate-500">
         <p>
-          Software Engineer based in Croatia, specializing in technical
-          education through hands-on learning and building applications.
+          Software Engineer based in Nigeria, proficient in Typescript,
+          ReactNative, Next, Threejs. I possess the expertise to build dynamic
+          web applications spanning from front-end to back-end, with focus on
+          amalgating seamless user experience with potent server-side
+          functionalities.
         </p>
       </div>
 
