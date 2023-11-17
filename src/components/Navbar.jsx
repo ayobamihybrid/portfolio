@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import { CiMenuBurger } from 'react-icons/ci';
-import { MdCancel } from 'react-icons/md';
+import { IoMdMenu } from 'react-icons/io';
+import { IoMdClose } from 'react-icons/io';
 import { useState } from 'react';
 
 const Navbar = () => {
@@ -67,19 +67,65 @@ const Navbar = () => {
         </NavLink>
 
         {open ? (
-          <MdCancel
-            size={20}
-            className="cursor-pointer text-white"
+          <IoMdClose
+            size={30}
+            className="cursor-pointer text-violet-900"
             onClick={() => setOpen(!open)}
           />
         ) : (
-          <CiMenuBurger
-            size={20}
-            className=" cursor-pointer text-white "
+          <IoMdMenu
+            size={30}
+            className=" cursor-pointer text-violet-900 "
             onClick={() => setOpen(!open)}
           />
         )}
       </header>
+
+      {open && (
+        <div className="absolute top-[60px] right-7 bg-white w-[180px] min-h-[40px] p-3 rounded-md z-50">
+          <nav className="flex flex-col text-[15px] sm:text-lg gap-3 sm:gap-7 font-medium">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? 'text-blue-500' : 'text-black'
+              }
+              onClick={() => setOpen(false)}
+            >
+              Home
+            </NavLink>
+
+            <NavLink
+              to="/about-me"
+              className={({ isActive }) =>
+                isActive ? 'text-blue-500' : 'text-black'
+              }
+              onClick={() => setOpen(false)}
+            >
+              About me
+            </NavLink>
+
+            <NavLink
+              to="/projects"
+              className={({ isActive }) =>
+                isActive ? 'text-blue-500' : 'text-black'
+              }
+              onClick={() => setOpen(false)}
+            >
+              Projects
+            </NavLink>
+
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                isActive ? 'text-blue-500' : 'text-black'
+              }
+              onClick={() => setOpen(false)}
+            >
+              Contact
+            </NavLink>
+          </nav>
+        </div>
+      )}
     </>
   );
 };
