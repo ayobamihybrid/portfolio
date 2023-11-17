@@ -21,7 +21,7 @@ const HomeInfo = ({ currentStage }) => {
           <br /> web & mobile applications spanning from front-end to back-end
         </p>
 
-        <Link to="/about" className="neo-brutalism-white neo-btn">
+        <Link to="/about-me" className="neo-brutalism-white neo-btn">
           Learn more
           <img src={arrow} alt="arrow" className="w-4 h-4 object-contain" />
         </Link>
