@@ -1,16 +1,15 @@
 import { Canvas } from '@react-three/fiber';
 import { Suspense, useEffect, useRef, useState } from 'react';
-
 import sakura from '../assets/sakura.mp3';
 import HomeInfo from '../components/HomeInfo';
 import Loader from '../components/Loader';
-// import { soundoff, soundon } from "../assets/icons";
 import Bird from '../models/Bird';
 import Island from '../models/Island';
 import Plane from '../models/Plane';
 import Sky from '../models/Sky';
 import { soundoff, soundon } from '../assets/icons';
-// import { Bird, Island, Plane, Sky } from "../models";
+import { motion } from 'framer-motion';
+import { zoomIn } from '../utils/motion';
 
 const Home = () => {
   const audioRef = useRef(new Audio(sakura));
@@ -31,7 +30,7 @@ const Home = () => {
     };
   }, [isPlayingMusic]);
 
-  const adjustBiplaneForScreenSize = () => {
+  const adjustPlaneForScreenSize = () => {
     let screenScale, screenPosition;
 
     // If screen width is less than 768px, adjust the scale and position
@@ -60,7 +59,7 @@ const Home = () => {
     return [screenScale, screenPosition];
   };
 
-  const [biplaneScale, biplanePosition] = adjustBiplaneForScreenSize();
+  const [planeScale, planePosition] = adjustPlaneForScreenSize();
   const [islandScale, islandPosition] = adjustIslandForScreenSize();
 
   return (
@@ -103,21 +102,36 @@ const Home = () => {
           />
           <Plane
             isRotating={isRotating}
-            position={biplanePosition}
+            position={planePosition}
             rotation={[0, 20.1, 0]}
-            scale={biplaneScale}
+            scale={planeScale}
           />
         </Suspense>
       </Canvas>
 
-      <div className='absolute bottom-2 left-2'>
+      <div className="absolute bottom-2 left-2">
         <img
           src={!isPlayingMusic ? soundoff : soundon}
-          alt='jukebox'
+          alt="jukebox"
           onClick={() => setIsPlayingMusic(!isPlayingMusic)}
-          className='w-10 h-10 cursor-pointer object-contain'
+          className="w-10 h-10 cursor-pointer object-contain"
         />
       </div>
+
+      {!isRotating && (
+        <motion.div
+          variants={zoomIn(2, 0.75)}
+          initial="hidden"
+          whileInView="show"
+          className="absolute bottom-12 w-full flex items-center justify-center "
+        >
+          <div className="w-[220px] bg-white p-3 rounded-[25px]">
+            <p className="text-center font-poppins font-bold blue-gradient_text">
+              Click & drag to explore
+            </p>
+          </div>
+        </motion.div>
+      )}
     </section>
   );
 };
