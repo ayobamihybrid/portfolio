@@ -87,7 +87,7 @@ const Navbar = () => {
             <NavLink
               to="/"
               className={({ isActive }) =>
-                isActive ? 'text-blue-500' : 'text-black'
+                isActive ? 'text-blue-500' : 'text-[#000]'
               }
               onClick={() => setOpen(false)}
             >
@@ -97,7 +97,7 @@ const Navbar = () => {
             <NavLink
               to="/about-me"
               className={({ isActive }) =>
-                isActive ? 'text-blue-500' : 'text-black'
+                isActive ? 'text-blue-500' : 'text-[#000]'
               }
               onClick={() => setOpen(false)}
             >
